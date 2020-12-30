@@ -10,11 +10,39 @@ export const Container = styled.div`
 `;
 
 export const Slider = styled.div`
-  background: '#A9C5BA';
+  background-color: #a9c5ba;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 50%;
+`;
+
+export const SliderImg = styled.div`
+  //display: flex;
+  ////flex: 1;
+
+  img {
+    margin: 112px 128px 31px 127px;
+  }
+`;
+export const SliderTexts = styled.div`
+  align-content: center;
+  text-align: center;
+  max-width: 553px;
+  opacity: 1;
+  h2 {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 200;
+    opacity: 1;
+  }
+
+  p {
+    font-size: 20px;
+    color: #ffffff;
+  }
 `;
 
 export const Content = styled.div`
@@ -29,6 +57,7 @@ export const Content = styled.div`
 export const HeaderContent = styled.div`
   margin: 120px 46px 73px 0;
   display: flex;
+  width: 100%;
 `;
 
 export const Logo = styled.text`

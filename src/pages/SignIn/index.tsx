@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import {
   Container,
   Slider,
+  SliderImg,
+  SliderTexts,
   Content,
   HeaderContent,
   Logo,
@@ -13,6 +15,7 @@ import {
   CreateAccount,
 } from './styles';
 
+import SlideView from '../../Components/SlideView';
 import LogoGoogle from '../../assets/Google__G__Logo.svg';
 import imgSlider from '../../assets/Data.png';
 
@@ -20,7 +23,17 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Slider>
-        <img src={imgSlider} alt="" />
+        <SliderImg>
+          <SlideView />
+        </SliderImg>
+
+        <SliderTexts>
+          <h2>Marcenas mattis egestas</h2>
+          <p>
+            Erdum et malesuada fames ac ante ileum primmer in faucibus
+            uspendisse porta.
+          </p>
+        </SliderTexts>
       </Slider>
 
       <Content>
