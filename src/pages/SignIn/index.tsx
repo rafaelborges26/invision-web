@@ -1,7 +1,67 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Container,
+  Slider,
+  Content,
+  HeaderContent,
+  Logo,
+  ContentLogin,
+  ContentLoginForm,
+  ContentOR,
+  ButtonLoginGoogle,
+  CreateAccount,
+} from './styles';
 
-const SignIn: React.FC = () => (
-    <p>SignIn</p>
-)
+import LogoGoogle from '../../assets/Google__G__Logo.svg';
+import imgSlider from '../../assets/Data.png';
 
-export default SignIn
+const SignIn: React.FC = () => {
+  return (
+    <Container>
+      <Slider>
+        <img src={imgSlider} alt="" />
+      </Slider>
+
+      <Content>
+        <HeaderContent>
+          <Logo>Invision</Logo>
+        </HeaderContent>
+        <ContentLogin>
+          <h1>Welcome to invision</h1>
+          <ContentLoginForm>
+            <p>Users name or Email</p>
+            <input name="email" type="text" />
+
+            <p>Password</p>
+            <input name="password" type="text" />
+          </ContentLoginForm>
+
+          <span>Forgot Password?</span>
+          <button type="submit">Sign in</button>
+        </ContentLogin>
+        <ContentOR>
+          <hr />
+          <p>Or</p>
+          <hr />
+        </ContentOR>
+        <ButtonLoginGoogle>
+          <button name="buttonGoogle" type="submit">
+            <img src={LogoGoogle} alt="Login with Google" />
+            <span>Sign in with Google</span>
+          </button>
+        </ButtonLoginGoogle>
+
+        <CreateAccount>
+          <p>
+            New
+            <b> Invision? </b>
+            <Link to="/">Create Account</Link>
+          </p>
+        </CreateAccount>
+      </Content>
+    </Container>
+  );
+};
+
+export default SignIn;
