@@ -7,30 +7,31 @@ export const Container = styled.div`
   flex: 1;
   justify-content: space-evenly;
   align-content: center;
+  position: relative;
+  height: 100%;
 `;
 
 export const Slider = styled.div`
   background-color: #a9c5ba;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 50%;
 `;
 
 export const SliderImg = styled.div`
   //display: flex;
-  ////flex: 1;
+  //flex: 1;
 
   img {
     margin: 112px 128px 31px 127px;
   }
 `;
+
 export const SliderTexts = styled.div`
   align-content: center;
   text-align: center;
   max-width: 553px;
   opacity: 1;
+  position: relative;
   h2 {
     font-size: 30px;
     color: #ffffff;
@@ -167,6 +168,7 @@ export const ButtonLoginGoogle = styled.button`
 
 export const CreateAccount = styled.div`
   margin-top: 40px;
+  margin-bottom: 120px;
   p {
     font-size: 14px;
     letter-spacing: 0px;

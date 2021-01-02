@@ -26,16 +26,7 @@ const SignIn: React.FC = () => {
         <SliderImg>
           <SlideView />
         </SliderImg>
-
-        <SliderTexts>
-          <h2>Marcenas mattis egestas</h2>
-          <p>
-            Erdum et malesuada fames ac ante ileum primmer in faucibus
-            uspendisse porta.
-          </p>
-        </SliderTexts>
       </Slider>
-
       <Content>
         <HeaderContent>
           <Logo>Invision</Logo>
