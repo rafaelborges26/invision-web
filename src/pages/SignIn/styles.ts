@@ -61,7 +61,7 @@ export const HeaderContent = styled.div`
   width: 100%;
 `;
 
-export const Logo = styled.text`
+export const Logo = styled.div`
   color: #000000;
   font-size: 35px;
   text-align: left;
@@ -75,18 +75,18 @@ export const ContentLogin = styled.div`
   flex-direction: column;
   align-items: center;
 
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   h1 {
     font-size: 30px;
     letter-spacing: 0px;
     opacity: 1;
     font-weight: normal;
     margin-bottom: 87px;
-  }
-
-  input {
-    width: 433px;
-    height: 42px;
-    margin-bottom: 18px;
   }
 
   span {
@@ -118,8 +118,8 @@ export const ContentOR = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-top: 40px;
+
   hr {
     width: 150px;
     height: 1px;
@@ -135,7 +135,7 @@ export const ContentOR = styled.div`
   }
 `;
 
-export const ButtonLoginGoogle = styled.button`
+export const ButtonLoginGoogle = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;

@@ -25,7 +25,7 @@ const SliderView: React.FC = () => {
           </p>
         </Page>
         <Page>
-          <p>esfffffffffte</p>
+          <p>teste</p>
         </Page>
       </Slider>
     </Wrapper>

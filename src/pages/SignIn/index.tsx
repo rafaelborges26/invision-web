@@ -1,5 +1,10 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import React, { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
+import getValidationErrors from '../../utils/getValidationErrors';
 import {
   Container,
   Slider,
@@ -18,8 +23,38 @@ import {
 import SlideView from '../../Components/SlideView';
 import LogoGoogle from '../../assets/Google__G__Logo.svg';
 import imgSlider from '../../assets/Data.png';
+import Input from '../../Components/Input';
+
+interface SignInFormData {
+  email: string;
+  password: string;
+}
 
 const SignIn: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+
+  const getData = useCallback(async (data: SignInFormData) => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required('E-mail obrigatório')
+          .email('Digite um e-mail válido'),
+        password: Yup.string().required('Senha obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+      }
+    }
+  }, []);
+
   return (
     <Container>
       <Slider>
@@ -33,16 +68,18 @@ const SignIn: React.FC = () => {
         </HeaderContent>
         <ContentLogin>
           <h1>Welcome to invision</h1>
-          <ContentLoginForm>
-            <p>Users name or Email</p>
-            <input name="email" type="text" />
+          <Form onSubmit={getData} ref={formRef}>
+            <ContentLoginForm>
+              <p>Users name or Email</p>
+              <Input name="email" type="text" />
 
-            <p>Password</p>
-            <input name="password" type="text" />
-          </ContentLoginForm>
+              <p>Password</p>
+              <Input name="password" type="password" />
+            </ContentLoginForm>
 
-          <span>Forgot Password?</span>
-          <button type="submit">Sign in</button>
+            <span>Forgot Password?</span>
+            <button type="submit">Sign in</button>
+          </Form>
         </ContentLogin>
         <ContentOR>
           <hr />
