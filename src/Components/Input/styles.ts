@@ -33,9 +33,11 @@ export const Error = styled(Tooltip)`
   span {
     background: #c53030;
     color: #ffffff;
+    text-align: center;
 
     &:before {
       border-color: #c53030 transparent;
+      margin-left: auto;
     }
   }
 `;

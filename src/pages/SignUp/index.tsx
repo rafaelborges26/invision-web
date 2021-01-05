@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
 import getValidationErrors from '../../utils/getValidationErrors';
 import {
   Container,
@@ -19,6 +19,7 @@ import {
   ContentOR,
   ButtonLoginGoogle,
   CreateAccount,
+  LoginAccount,
 } from './styles';
 
 import SlideView from '../../Components/SlideView';
@@ -34,26 +35,24 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: SignInFormData) => {
+  const getData = useCallback(async (data: SignInFormData) => {
     try {
       formRef.current?.setErrors({});
 
       const schema = Yup.object().shape({
+        name: Yup.string().required('Este campo não pode ser vazio'),
         email: Yup.string()
           .required('Este campo não pode ser vazio')
           .email('Digite um e-mail válido'),
-        password: Yup.string().required('Este campo não pode ser vazio'),
+        password: Yup.string()
+          .required('Este campo não pode ser vazio')
+          .min(6, 'A senha não deve ter menos de 6 caracteres'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
-
-      SignIn({
-        children: { email: data.email, password: data.password },
-      });
     } catch (err) {
-      console.log(err);
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
         formRef.current?.setErrors(errors);
@@ -62,7 +61,7 @@ const SignIn: React.FC = () => {
   }, []);
 
   const onSuccess = (res: {}) => {
-    console.log('Login sucess', res);
+    console.log('Logis sucess', res);
   };
 
   const onFailure = (res: {}) => {
@@ -82,17 +81,18 @@ const SignIn: React.FC = () => {
         </HeaderContent>
         <ContentLogin>
           <h1>Welcome to invision</h1>
-          <Form onSubmit={handleSubmit} ref={formRef}>
+          <Form onSubmit={getData} ref={formRef}>
             <ContentLoginForm>
+              <p>Full Name</p>
+              <Input name="name" type="text" />
+
               <p>Users name or Email</p>
               <Input name="email" type="text" />
 
               <p>Password</p>
               <Input name="password" type="password" />
             </ContentLoginForm>
-
-            <span>Forgot Password?</span>
-            <button type="submit">Sign in</button>
+            <button type="submit">Sign up</button>
           </Form>
         </ContentLogin>
         <ContentOR>
@@ -112,10 +112,22 @@ const SignIn: React.FC = () => {
 
         <CreateAccount>
           <p>
-            New
-            <b> Invision? </b>
-            <Link to="/signup">Create Account</Link>
+            By using, you agree to
+            <b> Invision </b>
           </p>
+          <p>
+            <Link to="/signup">Terms of Conditions </Link>
+            and
+            <Link to="/signup"> Privacy Policy</Link>
+          </p>
+
+          <LoginAccount>
+            <p>
+              Already on
+              <b> Invision? </b>
+              <Link to="/">Log in</Link>
+            </p>
+          </LoginAccount>
         </CreateAccount>
       </Content>
     </Container>
