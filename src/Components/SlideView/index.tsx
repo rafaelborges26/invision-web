@@ -24,6 +24,7 @@ const SliderView: React.FC = () => {
           <p> faucibus uspendisse porta.</p>
         </Page>
         <Page>
+          <img src={imgTeste} alt="Marcenas mattis egestas" />
           <h2>Testing</h2>
           <p>Testing the slideView.</p>
         </Page>

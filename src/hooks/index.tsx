@@ -1,8 +1,7 @@
 import React from 'react';
-import { AuthInvision } from './AuthContext'; // importar aq oara depois importar para o app para ficar mais facil
+import { AuthInvision } from './AuthContext';
 
 const AppInvision: React.FC = ({ children }) => {
-  // Providers global, colocamos todos os providers aq para depois setar no App
   return <AuthInvision>{children}</AuthInvision>;
 };
 

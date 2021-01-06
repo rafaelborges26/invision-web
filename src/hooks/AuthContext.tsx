@@ -23,7 +23,7 @@ interface AuthState {
   user: User;
 }
 
-const AuthContext = createContext<AuthContextData>({} as AuthContextData); // criar contexto quando as variaveis seram acessadas em diversos locais, ex: nome do usuario
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthInvision: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
@@ -39,9 +39,6 @@ export const AuthInvision: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(({ email, password }) => {
-    // metodo para login
-    // console.log(email, password);
-    console.log('chegou');
     // setando um user de exemplo
     const token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
@@ -52,7 +49,7 @@ export const AuthInvision: React.FC = ({ children }) => {
     };
 
     localStorage.setItem('@Invision.token', token);
-    localStorage.setItem('@Invision.user', JSON.stringify(user)); // usar stringfy por ser um objeto
+    localStorage.setItem('@Invision.user', JSON.stringify(user));
     setData({ token, user });
   }, []);
 
@@ -65,13 +62,13 @@ export const AuthInvision: React.FC = ({ children }) => {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function useAuth() {
-  const context = useContext(AuthContext); // passando a var de contexto aqui
+  const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider'); // disparar o erro se usar o Auth sem passar o auth provider em volta da tag
+    throw new Error('useAuth must be used within an AuthProvider');
   }
 
-  return context; // se achar retorna
+  return context;
 }
 
 export default AuthInvision;

@@ -10,6 +10,5 @@ export default function getValidationErrors(err: ValidationError): Errors {
   err.inner.forEach(error => {
     ValidationErrors[error.path] = error.message;
   });
-  console.log(ValidationErrors);
   return ValidationErrors;
 }
