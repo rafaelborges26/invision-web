@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { useCallback, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -26,42 +26,67 @@ import SlideView from '../../Components/SlideView';
 import LogoGoogle from '../../assets/Google__G__Logo.svg';
 import imgSlider from '../../assets/Data.png';
 import Input from '../../Components/Input';
+import { useAuth } from '../../hooks/AuthContext';
 
 interface SignInFormData {
+  name: string;
   email: string;
   password: string;
 }
 
 const SignIn: React.FC = () => {
+  const history = useHistory();
+
   const formRef = useRef<FormHandles>(null);
 
-  const getData = useCallback(async (data: SignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const { user, signIn } = useAuth();
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Este campo não pode ser vazio'),
-        email: Yup.string()
-          .required('Este campo não pode ser vazio')
-          .email('Digite um e-mail válido'),
-        password: Yup.string()
-          .required('Este campo não pode ser vazio')
-          .min(6, 'A senha não deve ter menos de 6 caracteres'),
-      });
+  console.log(user);
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
-        formRef.current?.setErrors(errors);
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Este campo não pode ser vazio'),
+          email: Yup.string()
+            .required('Este campo não pode ser vazio')
+            .email('Digite um e-mail válido'),
+          password: Yup.string()
+            .required('Este campo não pode ser vazio')
+            .min(6, 'A senha não deve ter menos de 6 caracteres'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        if (user.email === data.email) {
+          alert('O e-mail já foi criado');
+          throw new Error('O e-mail já foi criado.');
+        }
+
+        alert('Usuário criado com sucesso');
+        history.push('/');
+
+        signIn({
+          email: data.email,
+          name: data.name,
+          password: data.password,
+        });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+        }
       }
-    }
-  }, []);
+    },
+    [signIn],
+  );
 
   const onSuccess = (res: {}) => {
-    console.log('Logis sucess', res);
+    console.log('Login sucess', res);
   };
 
   const onFailure = (res: {}) => {
@@ -81,7 +106,7 @@ const SignIn: React.FC = () => {
         </HeaderContent>
         <ContentLogin>
           <h1>Welcome to invision</h1>
-          <Form onSubmit={getData} ref={formRef}>
+          <Form onSubmit={handleSubmit} ref={formRef}>
             <ContentLoginForm>
               <p>Full Name</p>
               <Input name="name" type="text" />

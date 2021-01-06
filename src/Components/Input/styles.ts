@@ -13,7 +13,6 @@ export const Container = styled.div<ContainerProps>`
     margin-bottom: 18px;
     padding: 15px;
     border: 1px solid #707070;
-
     ${props =>
       props.isErrored &&
       css`

@@ -18,31 +18,8 @@ export const Slider = styled.div`
 `;
 
 export const SliderImg = styled.div`
-  //display: flex;
-  //flex: 1;
-
   img {
     margin: 112px 128px 31px 127px;
-  }
-`;
-
-export const SliderTexts = styled.div`
-  align-content: center;
-  text-align: center;
-  max-width: 553px;
-  opacity: 1;
-  position: relative;
-  h2 {
-    font-size: 30px;
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-weight: 200;
-    opacity: 1;
-  }
-
-  p {
-    font-size: 20px;
-    color: #ffffff;
   }
 `;
 
@@ -151,6 +128,7 @@ export const ButtonLoginGoogle = styled.div`
     border: none;
     background: #ffffff;
     margin-bottom: 5px;
+    border-radius: 50px;
   }
 
   img {

@@ -10,6 +10,7 @@ interface User {
 interface SignInCredentials {
   email: string;
   password: string;
+  name?: string;
 }
 
 interface AuthContextData {
@@ -39,10 +40,12 @@ export const AuthInvision: React.FC = ({ children }) => {
 
   const signIn = useCallback(({ email, password }) => {
     // metodo para login
-    console.log(email, password);
+    // console.log(email, password);
+    console.log('chegou');
     // setando um user de exemplo
     const token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
     const user: User = {
       email,
       password,

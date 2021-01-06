@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -10,7 +10,6 @@ import {
   Container,
   Slider,
   SliderImg,
-  SliderTexts,
   Content,
   HeaderContent,
   Logo,
@@ -22,47 +21,58 @@ import {
 } from './styles';
 
 import SlideView from '../../Components/SlideView';
-import LogoGoogle from '../../assets/Google__G__Logo.svg';
-import imgSlider from '../../assets/Data.png';
 import Input from '../../Components/Input';
+import { useAuth } from '../../hooks/AuthContext';
 
 interface SignInFormData {
   email: string;
   password: string;
 }
-
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: SignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const { signIn, user } = useAuth();
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('Este campo não pode ser vazio')
-          .email('Digite um e-mail válido'),
-        password: Yup.string().required('Este campo não pode ser vazio'),
-      });
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('Este campo não pode ser vazio')
+            .email('Digite um e-mail válido'),
+          password: Yup.string()
+            .required('Este campo não pode ser vazio')
+            .min(6, 'A senha não deve ter menos de 6 caracteres'),
+        });
 
-      SignIn({
-        children: { email: data.email, password: data.password },
-      });
-    } catch (err) {
-      console.log(err);
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
-        formRef.current?.setErrors(errors);
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        if (user.email === data.email) {
+          alert('Você já está logado');
+          return;
+        }
+
+        signIn({
+          email: data.email,
+          password: data.password,
+        });
+        alert('Logado com sucesso');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+        }
       }
-    }
-  }, []);
+    },
+    [signIn],
+  );
 
   const onSuccess = (res: {}) => {
-    console.log('Login sucess', res);
+    console.log(res);
   };
 
   const onFailure = (res: {}) => {

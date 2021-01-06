@@ -12,20 +12,16 @@ export const Wrapper = styled.div`
 `;
 
 export const Page = styled.div`
-  //width: 10%;
-  //height: 50px;
   margin-left: auto;
-  //margin-right: 0px;
-
   align-content: center;
   text-align: center;
-  max-width: 553px;
   opacity: 1;
+  display: flex;
 
   h2 {
     font-size: 30px;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     margin-top: 30px;
     font-weight: 200;
     opacity: 1;
@@ -34,13 +30,14 @@ export const Page = styled.div`
   p {
     font-size: 20px;
     color: #ffffff;
-    margin-bottom: 30px;
   }
 
   img {
+    align-content: center;
+    align-items: center;
     top: 112px;
     left: 127px;
-    width: 705px;
+    width: 670px;
     height: 555px;
   }
 `;
