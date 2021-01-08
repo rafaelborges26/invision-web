@@ -39,5 +39,59 @@ export const Page = styled.div`
     left: 127px;
     width: 670px;
     height: 555px;
+
+    @media (max-width: 1940px) {
+      width: 500px;
+    }
+
+    @media (max-width: 1680px) {
+      width: 450px;
+    }
+
+    @media (max-width: 1680px) {
+      width: 450px;
+    }
+
+    @media (max-width: 1485px) {
+      width: 320px;
+      height: 450px;
+    }
+
+    @media (max-width: 1260px) {
+      width: 250px;
+      height: 400px;
+    }
+
+    @media (max-width: 1160px) {
+      width: 200px;
+      height: 300px;
+    }
+
+    @media (max-width: 1030px) {
+      width: 100px;
+      height: 250px;
+    }
+
+    @media (max-width: 800px) {
+      width: 80px;
+      height: 180px;
+
+      p {
+        font-size: 15px;
+        align-items: center;
+      }
+
+      h2 {
+        font-size: 5px;
+        align-items: center;
+        margin: 10px;
+        padding: 0 30px 0 30px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      width: 50px;
+      height: 150px;
+    }
   }
 `;

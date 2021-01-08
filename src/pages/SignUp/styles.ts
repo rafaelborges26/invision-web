@@ -9,12 +9,15 @@ export const Container = styled.div`
   align-content: center;
   position: relative;
   height: 100%;
+  width: 100%;
+  max-width: 1220px;
 `;
 
 export const Slider = styled.div`
   background-color: #a9c5ba;
   display: flex;
   width: 50%;
+  height: 100%;
 `;
 
 export const SliderImg = styled.div`
@@ -56,6 +59,17 @@ export const HeaderContent = styled.div`
   margin: 120px 46px 73px 0;
   display: flex;
   width: 100%;
+
+  @media (max-width: 840px) {
+    align-items: center;
+    margin: 50px 0 30px 0;
+  }
+
+  @media (max-width: 720px) {
+    align-items: center;
+    margin: 50px 0 30px 0;
+    padding: 20px;
+  }
 `;
 
 export const Logo = styled.div`
@@ -65,6 +79,15 @@ export const Logo = styled.div`
   opacity: 1;
   margin-left: auto;
   margin-right: 46px;
+
+  @media (max-width: 840px) {
+    font-size: 28px;
+    //margin: 50px 0 30px 0;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 24px;
+  }
 `;
 
 export const ContentLogin = styled.div`
@@ -162,6 +185,10 @@ export const ButtonLoginGoogle = styled.div`
     color: #000000;
     font-size: 18px;
     margin-left: 10px;
+  }
+
+  @media (max-width: 620px) {
+    width: 200px;
   }
 `;
 

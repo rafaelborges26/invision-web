@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  justify-content: space-evenly;
   align-content: center;
   position: relative;
   height: 100%;
@@ -36,6 +35,17 @@ export const HeaderContent = styled.div`
   margin: 120px 46px 73px 0;
   display: flex;
   width: 100%;
+
+  @media (max-width: 840px) {
+    align-items: center;
+    margin: 50px 0 30px 0;
+  }
+
+  @media (max-width: 720px) {
+    align-items: center;
+    margin: 50px 0 30px 0;
+    padding: 20px;
+  }
 `;
 
 export const Logo = styled.div`
@@ -45,6 +55,15 @@ export const Logo = styled.div`
   opacity: 1;
   margin-left: auto;
   margin-right: 46px;
+
+  @media (max-width: 840px) {
+    font-size: 28px;
+    //margin: 50px 0 30px 0;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 24px;
+  }
 `;
 
 export const ContentLogin = styled.div`
@@ -141,6 +160,10 @@ export const ButtonLoginGoogle = styled.div`
     color: #000000;
     font-size: 18px;
     margin-left: 10px;
+  }
+
+  @media (max-width: 620px) {
+    width: 200px;
   }
 `;
 

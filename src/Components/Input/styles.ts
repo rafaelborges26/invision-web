@@ -19,6 +19,14 @@ export const Container = styled.div<ContainerProps>`
         border-color: #c53030;
       `}
   }
+
+  @media (max-width: 1020px) {
+    width: 300px;
+  }
+
+  @media (max-width: 640px) {
+    width: 200px;
+  }
 `;
 
 export const Error = styled(Tooltip)`
